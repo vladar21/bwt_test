@@ -8,6 +8,10 @@ class Home{
 		View::render('main', compact('title'));
 	}
 
+	function weather(){
+		
+	}
+
 	
 }
 
