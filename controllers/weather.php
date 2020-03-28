@@ -2,7 +2,7 @@
 
 class Weather{
 
-	function forecast(){
+	function index(){
 		$url = 'http://www.gismeteo.ua/city/daily/5093/';        
 		$forecast = [];
 		$header = [];
@@ -75,13 +75,12 @@ class Weather{
 		else {
 			echo "Error! Don't find city";
 		}
-		
+		$title = 'Weather!';
+		$weatherday = Model::getWeatherDay();
+		$weatherhours = Model::getWeatherHours();
+		//echo "<pre>".print_r($weatherday, true)."</pre>";
 
-		// echo "<pre>".print_r($winds, true)."</pre>";
-		// echo "<pre>".print_r($temperatures, true)."</pre>";
-		// echo "<pre>".print_r($clouds, true)."</pre>";
-		// echo "<pre>".print_r($hours, true)."</pre>";
-		// echo "<pre>".print_r($header, true)."</pre>";
+		view::render('weather', compact('title', 'weatherday', 'weatherhours'));
 		
 	}
 

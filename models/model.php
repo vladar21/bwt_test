@@ -2,10 +2,8 @@
 class Model{
 	public static function getConnection(){
 		// устанавливаем связь с базой данных
-		$dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8';
-		
-		$db = new pdo($dsn, DB_USER, DB_PASS); 
-		
+		$dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8';		
+		$db = new pdo($dsn, DB_USER, DB_PASS); 		
 		return $db;
 
 	}
@@ -14,6 +12,14 @@ class Model{
 		$db = self::getConnection();
 		$s=$db->prepare('TRUNCATE TABLE weatherday');
 		$s->execute();
+	}
+
+	static function getWeatherDay(){
+		$db = self::getConnection();
+		$s = $db->prepare('SELECT * FROM weatherday');					
+		$s->execute();
+
+		return $s->fetch(PDO::FETCH_ASSOC);
 	}
 
 	static function saveWeatherDay($header){
@@ -29,10 +35,13 @@ class Model{
 	}
 
 	static function getIdWeatherDay($city){
+		//echo "city = ".$city."<br>";
+
 		$db = self::getConnection();
 		$s = $db->prepare('SELECT id FROM weatherday WHERE city = :city LIMIT 1');
 		$s->bindParam(':city', $city);				
 		$s->execute();
+		
 		return $s->fetchColumn();
 	}
 
@@ -42,8 +51,15 @@ class Model{
 		$s->execute();
 	}
 
+	static function getWeatherHours(){
+		$db = self::getConnection();
+		$s = $db->prepare('SELECT * FROM weatherhours');					
+		$s->execute();
+		
+		return $s->fetchall();
+	}
+
 	static function saveWeatherHours($row){
-		echo "<pre>".print_r($row, true)."</pre>";
 		$db = self::getConnection();
 		$s = $db->prepare('INSERT INTO weatherhours (weatherdayid, temperature, cloud, hour_index, wind_speed, precipitaion) 
 		VALUES(:weatherdayid, :temperature, :cloud, :hour_index, :wind_speed, :precipitaion)');

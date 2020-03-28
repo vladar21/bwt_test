@@ -32,13 +32,9 @@
             echo '><a href="/weather">Weather</a></li>';
             echo '<li';
             if ($active == '/feedback') echo ' class="active"';
-            echo '><a href="/feedback">Feadback</a></li>';
-            echo '<li';
-            if ($active == '/comments') echo ' class="active"';
-            echo '><a href="/comments">Import</a></li>';    
+            echo '><a href="/feedback">Feadback</a></li>';        
             
-        ?>
-       
+        ?>       
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
