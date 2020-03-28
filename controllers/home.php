@@ -4,14 +4,9 @@ class Home{
 
 	function index()
 	{		
-		$title = 'Weather!';		
-		View::render('main', compact('title'));
+		$title = 'Login!';		
+		View::render('login', compact('title'));
 	}
-
-	function weather(){
-		
-	}
-
 	
 }
 
