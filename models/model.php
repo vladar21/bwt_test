@@ -8,17 +8,17 @@ class Model{
 
 	}
 	
-	static function is_loginTrue($email){
-		$db = self::getConnection();
-		$s = $db->prepare(
-			'INSERT INTO user (is_login) VALUES(1) WHERE email = :email');
-		$s->bindParam(':email', $email);
-		$s->execute();
-	}
+	// static function is_loginTrue($email){
+	// 	$db = self::getConnection();
+	// 	$s = $db->prepare(
+	// 		'INSERT INTO user (is_login) VALUES(1) WHERE email = :email');
+	// 	$s->bindParam(':email', $email);
+	// 	$s->execute();
+	// }
 
 	static function checkIs_login($email){
 		$db = self::getConnection();
-		$s = $db->prepare('SELECT 1 FROM user WHERE email = :email AND is_login = 1 LIMIT 1');
+		$s = $db->prepare('SELECT 1 FROM user WHERE email = :email LIMIT 1');
 		$s->bindParam(':email', $email);
 		$s->execute();
 
@@ -34,17 +34,16 @@ class Model{
 		return $s->fetch(PDO::FETCH_NUM);
 	}
 
-	static function register($fname, $lname, $email, $gender, $birthday, $is_login){
+	static function register($fname, $lname, $email, $gender, $birthday){
 		$db = self::getConnection();
 		$s = $db->prepare(
-			'INSERT INTO user (first_name, last_name, email, gender, birthday, is_login) 
-			VALUES(:first_name, :last_name, :email, :gender, :birthday, :is_login)');
+			'INSERT INTO user (first_name, last_name, email, gender, birthday) 
+			VALUES(:first_name, :last_name, :email, :gender, :birthday)');
 		$s->bindParam(':first_name', $fname);
 		$s->bindParam(':last_name', $lname);
 		$s->bindParam(':email', $email);
 		$s->bindParam(':gender', $gender);
 		$s->bindParam(':birthday', $birthday);
-		$s->bindParam(':is_login', $is_login);
 		$s->execute();
 	} 
 

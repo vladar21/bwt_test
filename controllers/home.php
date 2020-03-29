@@ -53,8 +53,8 @@ class Home{
 		if($result) {
 			session_start();
 			$_SESSION['email'] = $email;
-			$is_login = 1;
-			Model::is_loginTrue($email);
+			// $is_login = 1;
+			// Model::is_loginTrue($email);
 			return Weather::index();
 		}
 		else {		               
