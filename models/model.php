@@ -1,12 +1,52 @@
 <?php
 class Model{
-	public static function getConnection(){
+	static function getConnection(){
 		// устанавливаем связь с базой данных
 		$dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8';		
 		$db = new pdo($dsn, DB_USER, DB_PASS); 		
 		return $db;
 
 	}
+	
+	static function is_loginTrue($email){
+		$db = self::getConnection();
+		$s = $db->prepare(
+			'INSERT INTO user (is_login) VALUES(1) WHERE email = :email');
+		$s->bindParam(':email', $email);
+		$s->execute();
+	}
+
+	static function checkIs_login($email){
+		$db = self::getConnection();
+		$s = $db->prepare('SELECT 1 FROM user WHERE email = :email AND is_login = 1 LIMIT 1');
+		$s->bindParam(':email', $email);
+		$s->execute();
+
+		return $s->fetch(PDO::FETCH_NUM);
+	}
+
+	static function checkEmail($email){
+		$db = self::getConnection();
+		$s = $db->prepare('SELECT 1 FROM user WHERE email = :email LIMIT 1');
+		$s->bindParam(':email', $email);
+		$s->execute();
+		
+		return $s->fetch(PDO::FETCH_NUM);
+	}
+
+	static function register($fname, $lname, $email, $gender, $birthday, $is_login){
+		$db = self::getConnection();
+		$s = $db->prepare(
+			'INSERT INTO user (first_name, last_name, email, gender, birthday, is_login) 
+			VALUES(:first_name, :last_name, :email, :gender, :birthday, :is_login)');
+		$s->bindParam(':first_name', $fname);
+		$s->bindParam(':last_name', $lname);
+		$s->bindParam(':email', $email);
+		$s->bindParam(':gender', $gender);
+		$s->bindParam(':birthday', $birthday);
+		$s->bindParam(':is_login', $is_login);
+		$s->execute();
+	} 
 
 	static function clearWeatherDay(){
 		$db = self::getConnection();
@@ -35,8 +75,6 @@ class Model{
 	}
 
 	static function getIdWeatherDay($city){
-		//echo "city = ".$city."<br>";
-
 		$db = self::getConnection();
 		$s = $db->prepare('SELECT id FROM weatherday WHERE city = :city LIMIT 1');
 		$s->bindParam(':city', $city);				
