@@ -12,7 +12,7 @@ class Router{
 		{
 			require_once $pathController;// подключаем соотв. файл в папке controllers
 			$controller = new $url[0]();// создаем объект класса, для домашней страницы, это home
-			//var_dump($controller);
+		
 			$method = isset($url[1])?$url[1]:'index';
 			
 			if(method_exists($controller, $method))

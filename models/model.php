@@ -7,14 +7,23 @@ class Model{
 		return $db;
 
 	}
-	
-	// static function is_loginTrue($email){
-	// 	$db = self::getConnection();
-	// 	$s = $db->prepare(
-	// 		'INSERT INTO user (is_login) VALUES(1) WHERE email = :email');
-	// 	$s->bindParam(':email', $email);
-	// 	$s->execute();
-	// }
+	static function getComments(){
+		$db = self::getConnection();
+		$s = $db->prepare('SELECT * FROM feedback');					
+		$s->execute();
+		
+		return $s->fetchall();
+	}
+
+	static function saveComment($email, $name, $message){
+		$db = self::getConnection();
+		$s = $db->prepare(
+			'INSERT INTO feedback (name, email, message) VALUES(:name, :email, :message)');
+			$s->bindParam(':name', $name);
+			$s->bindParam(':email', $email);		
+			$s->bindParam(':message', $message);
+			$s->execute();
+	}
 
 	static function checkIs_login($email){
 		$db = self::getConnection();
@@ -36,9 +45,8 @@ class Model{
 
 	static function register($fname, $lname, $email, $gender, $birthday){
 		$db = self::getConnection();
-		$s = $db->prepare(
-			'INSERT INTO user (first_name, last_name, email, gender, birthday) 
-			VALUES(:first_name, :last_name, :email, :gender, :birthday)');
+		$s = $db->prepare('INSERT INTO user (first_name, last_name, email, gender, birthday) 
+		VALUES (:first_name, :last_name, :email, :gender, :birthday)');
 		$s->bindParam(':first_name', $fname);
 		$s->bindParam(':last_name', $lname);
 		$s->bindParam(':email', $email);

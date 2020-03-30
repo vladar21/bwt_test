@@ -49,12 +49,11 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `fist_name` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
-  `dirthday` timestamp(6) NULL DEFAULT NULL,
-  `is_login` tinyint DEFAULT NULL,
+  `birthday` timestamp(6) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -91,7 +90,7 @@ CREATE TABLE `weatherday` (
 
 LOCK TABLES `weatherday` WRITE;
 /*!40000 ALTER TABLE `weatherday` DISABLE KEYS */;
-INSERT INTO `weatherday` VALUES (1,'2020-03-27 22:00:00.000000','+15','+6','Запорожье');
+INSERT INTO `weatherday` VALUES (1,'2020-03-28 22:00:00.000000','+16','+5','Запорожье');
 /*!40000 ALTER TABLE `weatherday` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +119,7 @@ CREATE TABLE `weatherhours` (
 
 LOCK TABLES `weatherhours` WRITE;
 /*!40000 ALTER TABLE `weatherhours` DISABLE KEYS */;
-INSERT INTO `weatherhours` VALUES (1,1,'+9','Ясно','2','5','нет данных'),(2,1,'+6','Ясно','5','5-8','нет данных'),(3,1,'+9','Ясно','8','6-10','нет данных'),(4,1,'+13','Ясно','11','5-11','нет данных'),(5,1,'+15','Ясно','14','4-10','нет данных'),(6,1,'+14','Ясно','17','2-8','нет данных'),(7,1,'+8','Ясно','20','2-4','нет данных'),(8,1,'+7','Малооблачно','23','3-5','нет данных');
+INSERT INTO `weatherhours` VALUES (1,1,'+9','Пасмурно','0','2','0'),(2,1,'+5','Облачно, небольшой дождь','3','2-3','0,3'),(3,1,'+5','Малооблачно','6','2-4','0'),(4,1,'+9','Пасмурно','9','2-5','0'),(5,1,'+14','Ясно','12','2-7','0'),(6,1,'+16','Облачно','15','4-9','0'),(7,1,'+14','Малооблачно','18','3-9','0'),(8,1,'+10','Малооблачно','21','3-7','0');
 /*!40000 ALTER TABLE `weatherhours` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -133,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-28  3:37:24
+-- Dump completed on 2020-03-30  2:55:06

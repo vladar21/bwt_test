@@ -9,32 +9,31 @@
 
         <div class="form-group">
             <label for="fname">First Name:</label>
-            <input type="text" class="form-control" id="fname" name="fname">
+            <input type="text" class="form-control" id="fname" name="fname" value="<?=@$_POST['fname']?>" >
         </div>
 
         <div class="form-group">
             <label for="lname">Last Name:</label>
-            <input type="text" class="form-control" id="lname" name="lname">
+            <input type="text" class="form-control" id="lname" name="lname" value="<?=@$_POST['lname']?>" >
         </div>
 
         <div class="form-group">
             <label for="email">Email address:</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" value="<?=@$_POST['email']?>" >
         </div>
 
         <div class="form-group col-sm-offset-2">
-            <!-- <label class="control-label col-xs-3">Gender:</label> -->
             <div class="col-xs-3">
                 <label for="gender">Gender:</label>
             </div>
             <div class="col-xs-3">
                 <label class="radio-inline">
-                    <input type="radio" name="gender" value="male"> male
+                    <input type="radio" name="gender" value="male"  <?=(@$_POST['gender'])?(((@$_POST['gender']) == 'male')?'checked':''):'' ?> > male
                 </label>
             </div>
             <div class="col-xs-3">
                 <label class="radio-inline">
-                    <input type="radio" name="gender" value="female"> female
+                    <input type="radio" name="gender" value="female" <?=(@$_POST['gender'])?(((@$_POST['gender']) == 'female')?'checked':''):'' ?> > female
                 </label>
             </div>
             <br>
@@ -42,7 +41,7 @@
 
         <div class="form-group"> <!-- Date input -->
             <label class="control-label" for="date">Birthday</label>
-            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" value="<?=@$_POST['date']?>" />
         </div>
        
         <div class="form-group">

@@ -63,19 +63,24 @@ class Weather{
 					array_push($winds, trim($r->nodeValue));
 				}
 				
-				$precipitaion = [];
+				$precipitaions = [];
+				$result = $xpath->query('/html/body/section/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div/div[1]/div/div[7]/div/div/div[@class="w_prec__value"]');			
+				foreach($result as $r){			
+					array_push($precipitaions, trim($r->nodeValue));
+				}
+
 				Model::clearWeatherHours();
 				$weatherid = Model::getIdWeatherDay($header['city']);		
 				if ($weatherid){
 					for($i=0; $i<8; $i++){
 						$row = [];
 						$row[0] = $weatherid;
-						$row[1] = $temperatures[$i]?$temperatures[$i]:'нет данных';
-						$row[2] = $clouds[$i]?$clouds[$i]:'нет данных';
-						$row[3] = $hours[$i]?$hours[$i]:'нет данных';
-						$row[4] = $winds[$i]?$winds[$i]:'нет данных';
-						$row[5] = isset($precipitaion[$i])?$precipitaion[$i]:'нет данных';
-						
+						$row[1] = isset($temperatures[$i])?$temperatures[$i]:'нет данных';
+						$row[2] = isset($clouds[$i])?$clouds[$i]:'нет данных';
+						$row[3] = isset($hours[$i])?$hours[$i]:'нет данных';
+						$row[4] = isset($winds[$i])?$winds[$i]:'нет данных';
+						$row[5] = isset($precipitaions[$i])?$precipitaions[$i]:'0';
+
 						Model::saveWeatherHours($row);
 					}
 				}
@@ -85,8 +90,7 @@ class Weather{
 
 				$title = 'Weather!';
 				$weatherday = Model::getWeatherDay();
-				$weatherhours = Model::getWeatherHours();
-			
+				$weatherhours = Model::getWeatherHours();			
 	
 				view::render('weather', compact('title', 'weatherday', 'weatherhours'));
 				

@@ -24,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="/">bwt_test</a>
+      <a class="navbar-brand" href="/weather">bwt_test</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -36,17 +36,18 @@
             echo '><a href="/weather">Weather</a></li>';
             echo '<li';
             if ($active == '/home/feedback') echo ' class="active"';
-            echo '><a href="/home/feedback">Feadback</a></li>';        
+            echo '><a href="/home/feedback">Feadback</a></li>';   
+            echo '<li';
+            if ($active == '/home/comments') echo ' class="active"';
+            echo '><a href="/home/comments">Comments</a></li>';       
             
         ?>       
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a href="/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->        
           
         <?php if(!isset($_SESSION['email'])): ?>
-          <li><?php $_SESSION['email'] ?></li>
+          <li><?php isset($_SESSION['email'])?$_SESSION['email']:''; ?></li>
           <li><a href="/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a href="/home/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 

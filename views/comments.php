@@ -8,11 +8,11 @@
 		<th>message</th>		
 	</tr>
 	
-	<?php foreach($feedbacks as $f): ?>
+	<?php foreach($comments as $c): ?>
 	<tr>
-		<td><?= $f['name'] ?></td>
-		<td><?= $f['email'] ?></td>
-		<td><?= $f['message'] ?></td>	
+		<td><?= $c['name'] ?></td>
+		<td><?= $c['email'] ?></td>
+		<td><?= $c['message'] ?></td>	
 	</tr>
 	<?php endforeach ?>
 	
