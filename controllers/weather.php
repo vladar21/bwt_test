@@ -92,7 +92,7 @@ class Weather{
 				$weatherday = Model::getWeatherDay();
 				$weatherhours = Model::getWeatherHours();			
 	
-				view::render('weather', compact('title', 'weatherday', 'weatherhours'));
+				return view::render('weather', compact('title', 'weatherday', 'weatherhours'));
 				
 			}
 		}		
